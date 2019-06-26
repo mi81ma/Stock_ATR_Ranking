@@ -28,6 +28,20 @@ class ViewController: UIViewController {
         view.backgroundColor = .blue
 
         URLRequest(stock_symbol: "GOOG")
+        URLRequest(stock_symbol: "AAPL")
+
+        let tickerStructInstance = TickerSymbol()
+        let tickerDictionary = tickerStructInstance.tickerDictionary
+
+        let tickerArray = Array(tickerDictionary.values)
+
+        print("tickerArray: ", tickerArray)
+
+//        let partOfTickerArray = Array(tickerArray[0...10])
+//        partOfTickerArray.map {
+//            URLRequest(stock_symbol: $0)
+//        }
+
     }
 
 
@@ -44,7 +58,8 @@ class ViewController: UIViewController {
 
         let session = URLSession(configuration: configuration)
 
-        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=\(stock_symbol)&apikey=XOY8SOI3RURXR93M")!
+
+        let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=\(stock_symbol)&apikey=93D5PFSKCS90U8B4")!
 
 
         let task = session.dataTask(with: url) {
@@ -161,7 +176,11 @@ class ViewController: UIViewController {
 
         }
     }
-         task.resume()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            // 3.0秒後に実行したい処理
+             task.resume()
+//        }
+
 }
 }
 
